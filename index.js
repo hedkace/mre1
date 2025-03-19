@@ -8,14 +8,18 @@ app.get('/test', (req,res)=>{
     res.json('test ok')
 })
 
-const map = await new Promise((resolve, reject)=>{
-    tmx.parseFile('./snowmap1.tmx', (err, loadedMap) => {
-        if(err) return reject(err)
-        resolve(loadedMap)
-    })
-})
+let map = null
 
-console.log(map)
+async function main(){
+    map = await new Promise((resolve, reject)=>{
+        tmx.parseFile('./snowmap1.tmx', (err, loadedMap) => {
+            if(err) return reject(err)
+            resolve(loadedMap)
+        })
+    })
+    console.log(map)
+}
+
 
 app.get('/', (req,res)=>{
     res.json({success: !!map})
