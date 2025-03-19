@@ -20,6 +20,7 @@ async function main(){
     console.log(map)
 }
 
+main()
 
 app.get('/', (req,res)=>{
     res.json({success: !!map})
